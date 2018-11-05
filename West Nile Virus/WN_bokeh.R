@@ -1,4 +1,6 @@
 
+# Zack Larsen
+# November 4, 2018
 
 # West nile virus prediction Kaggle competition
 
@@ -13,10 +15,19 @@
 # Potential model attributes:
 # Distance from spray locations that day
 # Number of mosquitos of particular species present at trap previously
-# 
+
+
+# Setup -------------------------------------------------------------------
 
 library(pacman)
-p_load(tidyverse, geosphere, ggplot2, ggvis, ggmap, rbokeh, dplyr, data.table, leaflet)
+p_load(tidyverse, geosphere, ggplot2, ggvis, ggmap, rbokeh,
+       dplyr, data.table, leaflet, microbenchmark, feather, e1071,
+       psych)
+
+proj <- '~/Desktop/Projects/Kaggle/West Nile/'
+setwd(proj)
+
+# Load data ---------------------------------------------------------------
 
 # Samples
 trainHead <- fread('train.csv',nrow=100)
@@ -24,7 +35,27 @@ testHead <- fread('test.csv',nrow=100)
 weatherHead <- fread('weather.csv',nrow=100)
 sprayHead <- fread('spray.csv',nrow=100)
 
-# Real thing
+# Real thing - using microbenchmark to time fread vs. read.csv:
+# https://www.r-bloggers.com/timing-in-r/
+write_feather(train, "train.feather") # Just doing this so we can benchmark it
+microbenchmark(read.csv('test.csv'), times = 10, unit = "s")
+microbenchmark(fread('test.csv'), times = 10, unit = "s")
+read = microbenchmark(base = read.csv('test.csv'),
+                      fread = fread('test.csv'),
+                      feather_reader = read_feather("train.feather"),
+                      times = 10, 
+                      unit = "ms")
+microbenchmark:::autoplot.microbenchmark(read)
+microbenchmark:::boxplot.microbenchmark(read)
+
+# Using feather as the serialization format - it is clearly 
+# far faster than read_csv and even fread!
+write_feather(train, "train.feather")
+train_feather = read_feather("train.feather")
+train_feather %>% 
+  head()
+
+
 train <- fread('train.csv')
 test <- fread('test.csv')
 weather <- fread('weather.csv')
@@ -42,14 +73,20 @@ spray %>%
 weather %>% 
   head()
 
+
+# NA check and descriptives -----------------------------------------------
+
 # Check for missing values
 sapply(train, function(x) sum(is.na(x)))
 sapply(test, function(x) sum(is.na(x)))
 sapply(spray, function(x) sum(is.na(x))) # Time has 584 NA values
+spray %>% 
+  filter(is.na(Time))
 sapply(weather, function(x) sum(is.na(x)))
 
-train %>% 
-  summarise(na_count = sum(is.na()))
+# Get number of rows with NA's in ANY column:
+spray %>% 
+  summarise(na_count = sum(is.na(.)))
 
 map(train, ~sum(is.na(.)))
 
@@ -64,6 +101,41 @@ apply(train, MARGIN = 1, function(x) sum(is.na(x)))
 # train %>%
 #   rowwise %>%
 #   summarise(NA_per_row = sum(is.na(.)))
+
+
+# Descriptive stats:
+train %>% 
+  head()
+
+train %>% 
+  glimpse()
+
+dim(train)
+
+sapply(train, class)
+
+cbind(freq=table(train$Species), percentage=prop.table(table(train$Species))*100)
+
+summary(train)
+
+sapply(train[,10:11], sd)
+sapply(train[,c(10,11)], sd) # Alternatively, using different slicing
+
+apply(train[,10:11], 2, skewness)
+apply(train[,10:11], 2, kurtosis)
+
+cor(train[,10:12])
+
+describe(train[,10:12]) # From psych package
+
+
+# EDA ---------------------------------------------------------------------
+
+train %>% 
+  glimpse()
+
+weather %>% 
+  glimpse()
 
 
 # Divide weather stations
@@ -102,24 +174,14 @@ train %>%
   summarise(skeeterCount = sum(NumMosquitos)) %>% 
   arrange(Species,desc(skeeterCount))
 
+# Mosquitos per trap:
+ggplot(data = train) +
+  geom_boxplot(mapping = aes(x = reorder(Trap, NumMosquitos, FUN = median), y = NumMosquitos)) +
+  coord_flip()
 
 
-# How many days do we have test, spray, and weather data for?
-test %>% 
-  select(Date) %>% 
-  inner_join(weather, by="Date") %>% 
-  select(Date) %>% 
-  inner_join(spray, by="Date") %>% 
-  select(Date)
- 
-
-
-
-# Make list of unique traps:
-traps <- train %>% 
-  select(Trap, Latitude, Longitude) %>% 
-  unique() %>% 
-  arrange()
+# How many days do we have train and weather data for?
+length(intersect(train$Date, weather$Date)) # 95
 
 
 # Narrow down training features to potentially relevant ones:
@@ -128,17 +190,10 @@ train %>%
   head()
 
 
-
-
-
-# EDA ---------------------------------------------------------------------
-
 spray %>% 
   group_by(Date) %>% 
   distinct(Latitude, Longitude) %>% 
   summarise(locations = n()) # 10 unique spray dates, mostly in 2013
-
-
 
 
 
@@ -151,8 +206,18 @@ train %>%
   count(Species, Trap, sort = TRUE)
 
 
+# Categorical heatmap
+ggplot(train, aes(Trap, Date)) + 
+  geom_tile(aes(fill = NumMosquitos),colour = "white")
+#  + scale_fill_manual(values=c("red", "blue", "black"))
+
 
 # Trap Map -----------------------------------------------------------------
+# Make list of unique traps:
+traps <- train %>% 
+  select(Trap, Latitude, Longitude) %>% 
+  unique() %>% 
+  arrange()
 
 traps %>% 
   head()
@@ -162,8 +227,6 @@ leaflet() %>%
   addMarkers(lat = traps$Latitude,
              lng = traps$Longitude,
              popup = 'Skeeter Trap')
-
-
 
 
 # Make an icon to plot instead of the default pointer
@@ -178,6 +241,19 @@ leaflet() %>%
   addMarkers(lat = traps$Latitude,
              lng = traps$Longitude,
              icon = SkeeterIcon)
+
+
+# Mapping the total number of mosquitos per trap
+skeeterCounts <- train %>% 
+  group_by(Trap, Latitude, Longitude, AddressNumberAndStreet) %>%
+  summarise(skeeterCount = sum(NumMosquitos))
+
+sapply(skeeterCounts,mean)
+
+gmap(lat = 41.84, lng = -87.69, zoom = 11, width = 700, height = 600) %>%
+  ly_points(Longitude, Latitude, data = skeeterCounts, alpha = 0.8, col = "red",
+            size = skeeterCount/500,
+            hover = c(Trap, AddressNumberAndStreet, skeeterCount))
 
 
 
@@ -295,6 +371,32 @@ Distances %>%
 
 
 
+
+
+# Link previous sprays to test data ---------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Test data transformations for predictions -------------------------------
 
 # Below is our training format, so test should be the same but
@@ -326,6 +428,27 @@ testHead %>%
 # Scatterplot matrix ------------------------------------------------------
 
 library("PerformanceAnalytics")
-my_data <- mtcars[, c(1,3,4,5,6,7)]
-chart.Correlation(my_data, histogram=TRUE, pch=19)
+chart.Correlation(train[,10:12], histogram=TRUE, pch=19)
+
+
+
+# Modeling ----------------------------------------------------------------
+
+train %>% 
+  head()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
