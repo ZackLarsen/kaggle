@@ -1,7 +1,7 @@
 # APTOS blindness detection kaggle competition
 
 
-In this competition, the objective is to correctly classify diabetic retinopathy in images taken using a particular form of photography. There are five ratings that represent the various diagnoses for each image:
+In this competition, the objective is to correctly classify diabetic retinopathy in images taken using fundus photography. There are five ratings that represent the various diagnoses for each image:
  * 0 - No diabetic retinopathy (DR)
  * 1 - Mild DR
  * 2 - Moderate DR
@@ -16,4 +16,4 @@ Below are some of the approaches we can try to classify these images:
 
 
 Example images:
-![img1](img/comps-14774-536888-train_images-000c1434d8d7.png)
+![img1](img/comps-14774-536888-train_images-000c1434d8d7.png height 400 width 400)
