@@ -1,4 +1,4 @@
-# APTOS
+# APTOS blindness detection kaggle competition
 
 
 In this competition, the objective is to correctly classify diabetic retinopathy in images taken using a particular form of photography. There are five ratings that represent the various diagnoses for each image:
