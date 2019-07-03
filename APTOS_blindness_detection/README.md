@@ -14,3 +14,6 @@ Below are some of the approaches we can try to classify these images:
   * Use a pretrained network for image classification tasks to extract features from the competition data, then feed those through only the classification layer of the convnet.
   * Use a pretrained network but train from end-to-end, which will be much more computationally expensive but allows for data augmentation which may be beneficial because we only have a few thousand images per class.
 
+
+Example images:
+![img1](../img/comps)
