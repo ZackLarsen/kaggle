@@ -6,6 +6,8 @@ In this competition, the objective is to correctly classify diabetic retinopathy
  * 2 - Moderate DR
  * 3 - Severe DR
  * 4 - Proliferative DR
+ 
+ <img src="img/diagnoes.png" width="500" height="350"/>
 
 Below are some of the approaches we can try to classify these images:
   * Train a convolutional neural network (convnet) from scrath.
