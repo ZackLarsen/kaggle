@@ -33,4 +33,4 @@ Various preprocessing methods, model architectures, and training parameters were
 
 1. Binary classifier
 
-<img src="img/binary_cassifier_training.png" width="400" height="600"/>
+<img src="img/binary_classifier_training.png" width="400" height="600"/>
