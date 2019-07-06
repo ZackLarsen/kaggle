@@ -18,7 +18,7 @@ Below are some of the approaches we can try to classify these images:
 
 Example images:
 
-<img src="img/APTOS_RD.png" width="500" height="500"/>
+<img src="img/APTOS_DR.png" width="600" height="600"/>
 
 
 ## Preprocessing steps:
