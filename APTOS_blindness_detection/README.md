@@ -2,10 +2,13 @@
 
 
 ##### Table of Contents  
-[Competition_Info](#competition_info)  
-[Example_Images](#img) 
-[Prep](#prep) 
-[Methods](#methods) 
+[Competition_Info](#competition_info)
+
+[Example_Images](#img)
+
+[Prep](#prep)
+
+[Methods](#methods)
 
 ## Competition Info <a name="competition_info"/>
 
