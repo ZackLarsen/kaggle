@@ -26,3 +26,11 @@ Depending on the model being built, we can do a few things to improve performanc
   1. Separate training images into different folders based on their assigned class label.
   1. Augment data by shifting, flipping, rotating, etc.
   1. Use some data from previous competition a few years ago
+
+
+## Methods
+Various preprocessing methods, model architectures, and training parameters were experimented with to try to get the best kappa score.
+
+1. Binary classifier
+
+<img src="img/binary_cassifier_training.png" width="400" height="600"/>
