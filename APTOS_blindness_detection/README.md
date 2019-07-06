@@ -10,6 +10,8 @@
 
 [Methods](#methods)
 
+[Results](#results)
+
 ## Competition Info <a name="competition_info"/>
 
 In this competition, the objective is to correctly classify diabetic retinopathy in images taken using fundus photography. There are five ratings that represent the various diagnoses for each image:
@@ -48,3 +50,11 @@ Below are some of the approaches we can try to classify these images:
 1. Binary classifier
 
 <img src="img/binary_classifier_training.png" width="400" height="600"/>
+
+
+## Results <a name="results"/>
+
+1. Binary classifier
+   * quadratic weighted kappa = 0.945
+1. Multiclass classifier
+   * quadratic weighted kappa = 0.956
