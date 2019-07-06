@@ -18,7 +18,7 @@ Below are some of the approaches we can try to classify these images:
 
 Example images:
 
-<img src="img/comps-14774-536888-train_images-000c1434d8d7.png" width="500" height="350"/>
+<img src="img/APTOS_RD.png" width="500" height="500"/>
 
 
 ## Preprocessing steps:
