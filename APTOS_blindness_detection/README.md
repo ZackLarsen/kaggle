@@ -10,6 +10,8 @@
 
 [Methods](#methods)
 
+[Models](#models)
+
 [Results](#results)
 
 ## Competition Info <a name="competition_info"/>
@@ -46,6 +48,16 @@ Below are some of the approaches we can try to classify these images:
   * Use a pretrained network but train from end-to-end, which will be much more computationally expensive but allows for data augmentation which may be beneficial because we only have a few thousand images per class.
   * Use fine-tuning to freeze a few layers at a time to make the pretrained weights slightly more relevant to the current dataset without losing the generalizability of the pretrained model weights.
 
+
+## Models <a name="models"/>
+For this competition, there were several models that were used. Their performance is documented in the results section below, but here is a listing of them and what major architectures they employed:
+
+1. Binary classifier CNN
+> "retinopathy_detector_v1", 3 convolutional layers with dropout and a dense softmax layer
+1. Multiclass classifier CNN
+> retinopathy_detector_v2
+1. 
+1.
 
 
 ## Results <a name="results"/>
