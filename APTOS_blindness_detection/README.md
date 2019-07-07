@@ -47,14 +47,15 @@ Below are some of the approaches we can try to classify these images:
   * Use fine-tuning to freeze a few layers at a time to make the pretrained weights slightly more relevant to the current dataset without losing the generalizability of the pretrained model weights.
 
 
-1. Binary classifier
-
-<img src="img/binary_classifier_training.png" width="400" height="600"/>
-
 
 ## Results <a name="results"/>
 
 1. Binary classifier
    * quadratic weighted kappa = 0.945
+   
+   <img src="img/binary_classifier_training.png" width="400" height="600"/>
+   
 1. Multiclass classifier
    * quadratic weighted kappa = 0.956
+   
+   <img src="img/multiclass_classifier_training.png" width="400" height="600"/>
