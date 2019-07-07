@@ -23,7 +23,7 @@ In this competition, the objective is to correctly classify diabetic retinopathy
  * 3 - Severe DR
  * 4 - Proliferative DR
  
- <img src="img/diagnoses.png" width="350" height="350"/>
+ <img src="img/diagnoses.png" width="200" height="175"/>
 
 
 ## Example Images <a name="img"/>
