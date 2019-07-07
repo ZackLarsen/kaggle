@@ -52,6 +52,7 @@ Below are some of the approaches we can try to classify these images:
   * Use a pretrained network but train from end-to-end, which will be much more computationally expensive but allows for data augmentation which may be beneficial because we only have a few thousand images per class.
   * Use fine-tuning to freeze a few layers at a time to make the pretrained weights slightly more relevant to the current dataset without losing the generalizability of the pretrained model weights.
   * For experimentation, attempt an object detection task where we can draw bounding boxes around the area in the retinal photograph that contains elements specific to diabetic retinopathy, such as aneurysms, hemorrhages, or swollen maculae.
+  * Decolorize the images to go from RGB to grayscale. This is done in cases where the color doesn't add helpful information. In other words, if you just need to detect edges, grayscale should get the job done and will result in a model with fewer parameters to train so it will be faster and also will not suffer the curse of dimensionality, whereby it is harder to separate classes along more dimensions.
 
 ## Models <a name="models"/>
 For this competition, there were several models that were used. Their performance is documented in the results section below, but here is a listing of them and what major architectures they employed:
