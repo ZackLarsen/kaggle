@@ -28,7 +28,7 @@ In this competition, the objective is to correctly classify diabetic retinopathy
 
 ## Example Images <a name="img"/>
 
-<img src="img/Diabetic_Retinopathy.png" width="600" height="600"/>
+<img src="img/Diabetic_Retinopathy.jpg" width="600" height="350"/>
 
 <img src="img/APTOS_DR.png" width="600" height="600"/>
 
