@@ -52,12 +52,13 @@ Below are some of the approaches we can try to classify these images:
 ## Models <a name="models"/>
 For this competition, there were several models that were used. Their performance is documented in the results section below, but here is a listing of them and what major architectures they employed:
 
-1. Binary classifier CNN
-> "retinopathy_detector_v1", 3 convolutional layers with dropout and a dense softmax layer
-1. Multiclass classifier CNN
-> retinopathy_detector_v2
-1. 
-1.
+1. "retinopathy_detector_v1"
+> Binary classifier CNN, 3 convolutional layers with dropout and a dense softmax layer
+2. "retinopathy_detector_v2"
+> Multiclass classifier CNN
+3. 
+4.
+5.
 
 
 ## Results <a name="results"/>
