@@ -28,6 +28,8 @@ In this competition, the objective is to correctly classify diabetic retinopathy
 
 ## Example Images <a name="img"/>
 
+<img src="img/Diabetic_Retinopathy.png" width="600" height="600"/>
+
 <img src="img/APTOS_DR.png" width="600" height="600"/>
 
 
@@ -47,7 +49,7 @@ Below are some of the approaches we can try to classify these images:
   * Use a pretrained network for image classification tasks to extract features from the competition data, then feed those through only the classification layer of the convnet.
   * Use a pretrained network but train from end-to-end, which will be much more computationally expensive but allows for data augmentation which may be beneficial because we only have a few thousand images per class.
   * Use fine-tuning to freeze a few layers at a time to make the pretrained weights slightly more relevant to the current dataset without losing the generalizability of the pretrained model weights.
-
+  * For experimentation, attempt an object detection task where we can draw bounding boxes around the area in the retinal photograph that contains elements specific to diabetic retinopathy, such as aneurysms, hemorrhages, or swollen maculae.
 
 ## Models <a name="models"/>
 For this competition, there were several models that were used. Their performance is documented in the results section below, but here is a listing of them and what major architectures they employed:
