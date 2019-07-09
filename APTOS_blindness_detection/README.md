@@ -16,6 +16,8 @@
 
 ## Competition Info <a name="competition_info"/>
 
+Submission deadline: September 5, 2019
+
 In this competition, the objective is to correctly classify diabetic retinopathy in images taken using fundus photography. There are five ratings that represent the various diagnoses for each image:
  * 0 - No diabetic retinopathy (DR)
  * 1 - Mild DR
