@@ -47,7 +47,7 @@ Depending on the model being built, we can do a few things to improve performanc
 Various preprocessing methods, model architectures, and training parameters were experimented with to try to get the best kappa score.
 
 Below are some of the approaches we can try to classify these images:
-  * Train a convolutional neural network (convnet) from scrath.
+  * Train a convolutional neural network (convnet) from scratch.
   * Train a convnet from scratch but additionally augment the data by applying transformations available in keras.
   * Use a pretrained network for image classification tasks to extract features from the competition data, then feed those through only the classification layer of the convnet.
   * Use a pretrained network but train from end-to-end, which will be much more computationally expensive but allows for data augmentation which may be beneficial because we only have a few thousand images per class.
