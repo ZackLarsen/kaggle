@@ -38,9 +38,11 @@ In this competition, the objective is to correctly classify diabetic retinopathy
 
 ## Preprocessing steps <a name="prep"/>
 Depending on the model being built, we can do a few things to improve performance. Some of these steps are applicable to all models being built:
-  1. Separate training images into different folders based on their assigned class label.
+  1. Separate training images into different folders based on their assigned class label. It is also possible to keep all data in the existing train_images folder and just reference the labels from the 'train' dataframe using flow_from_dataframe() instead of flow_from_directory.
   1. Augment data by shifting, flipping, rotating, etc.
-  1. Use some data from previous competition a few years ago
+  1. Convert RGB color to grayscale.
+  1. Crop uniformative area such as black area outside the actual eye.
+  1. Use some data from previous competition a few years ago.
 
 
 ## Methods <a name="methods"/>
@@ -62,7 +64,8 @@ For this competition, there were several models that were used. Their performanc
 > Binary classifier CNN, 3 convolutional layers with dropout and a dense softmax layer
 2. "retinopathy_detector_v2"
 > Multiclass classifier CNN
-3. 
+3. "APTOS_vgg16"
+> Multiclass classifier with VGG16 as a base, with some of the later layers being custom-tuned to present data. This used a GPU because data augmentaion was also performed to address overfitting, and therefore the whole model had to be trained, not just the last layers.
 4.
 5.
 
@@ -78,3 +81,8 @@ For this competition, there were several models that were used. Their performanc
    * quadratic weighted kappa = 0.956
    
    <img src="img/multiclass_classifier_training.png" width="400" height="600"/>
+
+1. Multiclass classifier with VGG16 as base
+   * quadratic weighted kappa = ?
+   
+
