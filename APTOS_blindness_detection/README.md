@@ -73,12 +73,12 @@ For this competition, there were several models that were used. Their performanc
 ## Results <a name="results"/>
 
 1. Binary classifier
-   * quadratic weighted kappa = 0.945
+   * Classification accuracy = 0.945
    
    <img src="img/binary_classifier_training.png" width="400" height="600"/>
    
 1. Multiclass classifier
-   * quadratic weighted kappa = 0.956
+   * Classification accuracy = 0.956
    
    <img src="img/multiclass_classifier_training.png" width="400" height="600"/>
 
