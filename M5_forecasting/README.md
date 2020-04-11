@@ -16,3 +16,9 @@ The data covers stores in three US States (California, Texas, and Wisconsin) and
 1. Instead of having a single competition to estimate both the point forecasts and the uncertainty distribution, there will be two parallel tracks using the same dataset, the first requiring 28 days ahead point forecasts and the second 28 days ahead probabilistic forecasts for the median and four prediction intervals (50%, 67%, 95%, and 99%).
 1. For the first time, it focuses on series that display intermittency, i.e., sporadic demand including zeros.
 
+## Files
+
+1. calendar.csv - Contains information about the dates on which the products are sold.
+1. sales_train_validation.csv - Contains the historical daily unit sales data per product and store [d_1 - d_1913]
+1. sample_submission.csv - The correct format for submissions. Reference the Evaluation tab for more info.
+1. sell_prices.csv - Contains information about the price of the products sold per store and date.
