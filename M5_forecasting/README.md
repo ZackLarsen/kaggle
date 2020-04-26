@@ -36,3 +36,13 @@ Time series models used for forecasting include:
 1. Exponential smoothing models
 1. ARIMA models
 
+Common categories of models include:
+
+1. Explanatory models (incorporate features that try to **explain** what causes the variation in the target
+1. Times series models that predict future values based on past values of the same variable, not external variables
+1. Mixed models that incorporate both. Examples: 
+   1. Dynamic regression
+   1. Panel data
+   1. Longitudinal
+   1. Transfer function
+   1. Linear system models
