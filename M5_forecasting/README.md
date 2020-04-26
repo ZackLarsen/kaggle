@@ -22,3 +22,12 @@ The data covers stores in three US States (California, Texas, and Wisconsin) and
 1. sales_train_validation.csv - Contains the historical daily unit sales data per product and store [d_1 - d_1913]
 1. sample_submission.csv - The correct format for submissions. Reference the Evaluation tab for more info.
 1. sell_prices.csv - Contains information about the price of the products sold per store and date.
+
+## Research Notes (mostly from Forecasting with R book @ https://otexts.com/fpp2/data-methods.html)
+
+Quantitative forecasting can be applied when two conditions are satisfied:
+
+1. Numerical information about the past is available;
+1. It is reasonable to assume that some aspects of the past patterns will continue into the future.
+
+
