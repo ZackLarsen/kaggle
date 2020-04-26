@@ -30,4 +30,9 @@ Quantitative forecasting can be applied when two conditions are satisfied:
 1. Numerical information about the past is available;
 1. It is reasonable to assume that some aspects of the past patterns will continue into the future.
 
+Time series models used for forecasting include:
+
+1. Decomposition models
+1. Exponential smoothing models
+1. ARIMA models
 
